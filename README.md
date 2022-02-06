@@ -66,6 +66,12 @@ Rename .png files that are actually JPEG files to have the .jpg extension
 For those files renamed above, if the date-related metadata tags don't exist and
 the JSON file exists, merge the tags.
 
+### fix_json_name.args
+Rename JSON files from 'img_1234.jpg(1).json' to 'img_1234(1).jpg.json'
+
+### fix_info_json_name.args
+Rename JSON files from 'album-info.json' to 'album.json'
+
 ## Scripts that take a leap of faith
 Out of the thousands of photos, only a handful actually have a JSON file. This
 is very disappointing and very unsatisfactory. In an attempt to fill in more
