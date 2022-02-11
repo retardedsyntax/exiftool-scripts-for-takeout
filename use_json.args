@@ -9,6 +9,9 @@ json
 
 # Skip minor warnings
 -m
+-u
+-U
+-a
 
 # Show processed filenames
 -v0

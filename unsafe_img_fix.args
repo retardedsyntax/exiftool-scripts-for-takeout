@@ -1,0 +1,16 @@
+#Fix images which could not be processed by f.e. 'use_json' args
+
+# Clean all
+-all= 
+
+# Load not corrupted
+-tagsfromfile @
+
+#Set them back
+-all:all
+
+-unsafe
+-icc_profile
+
+# Clobber everything
+-overwrite_original
