@@ -1,5 +1,7 @@
 #Fix images which could not be processed by f.e. 'use_json' args
 
+-if 'uc $FileExtension ne "JSON"' 
+
 # Clean all
 -all= 
 
