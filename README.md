@@ -2,7 +2,7 @@
 ## TL;DR
 To fix the metadata and clobber the originals:
 ```
-exiftool -@ use_json.args <takeout_dir>
+exiftool -@ fix_json_filenames.args <takeout_dir>
 exiftool -@ jpg_to_mp4.args <takeout_dir>
 exiftool -@ jpg_to_png.args <takeout_dir>
 exiftool -@ png_to_jpg.args <takeout_dir>
@@ -66,10 +66,10 @@ Rename .png files that are actually JPEG files to have the .jpg extension
 For those files renamed above, if the date-related metadata tags don't exist and
 the JSON file exists, merge the tags.
 
-### fix_json_name.args
+### fix_json_filenames.args
 Rename JSON files from 'img_1234.jpg(1).json' to 'img_1234(1).jpg.json'
 
-### fix_info_json_name.args
+### fix_albuminfo_json_filenames.args
 Rename JSON files from 'album-info.json' to 'album.json'
 
 ## Scripts that take a leap of faith
