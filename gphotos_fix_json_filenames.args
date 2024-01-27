@@ -7,10 +7,6 @@
 -charset
 UTF8
 
-# Process only JSON files
--ext
-json
-
 # Skip minor errors and warnings
 -ignoreMinorErrors
 
@@ -30,17 +26,15 @@ json
 -progress:ExifTool %p%%
 -progress
 
-# Recursive
--r
-
 # Match patterns like 'img_1234.jpg(1).json'
 #
 # Perl regex references:
 # https://perldoc.perl.org/perlre
 # https://perldoc.perl.org/perlop#Regexp-Quote-Like-Operators
 #
-# Online tester:
+# Online testers:
 # https://ingram-braun.net/erga/online-regex-tester-perl-php-javascript/
+# https://regex101.com/
 -if
 ($FileName=~/([^.]+?)\.(\w+?)(\(\d+\)).json/)
 
@@ -53,3 +47,10 @@ json
 # them, see example 5 at https://exiftool.org/filename.html about
 # using the '-o' option.
 -overwrite_original
+
+# Recurse all subdirs
+-r
+
+# Process only JSON files
+-ext
+json
