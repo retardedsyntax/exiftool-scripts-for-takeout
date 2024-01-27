@@ -3,6 +3,9 @@
 #
 # Options overview:             https://exiftool.org/exiftool_pod.html#Option-Overview
 # Writing file/directory names: https://exiftool.org/filename.html
+#
+# References:
+# https://exiftool.org/forum/index.php?topic=12361.0
 
 # Always use UTF8 charset
 -charset
