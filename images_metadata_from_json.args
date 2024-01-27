@@ -1,0 +1,86 @@
+# Fill metadata info for image files from
+# Google's JSON files, if metadata is missing
+#
+# Options overview:             https://exiftool.org/exiftool_pod.html#Option-Overview
+# Writing file/directory names: https://exiftool.org/filename.html
+
+# Always use UTF8 charset
+-charset
+UTF8
+
+# Skip minor errors and warnings
+-ignoreMinorErrors
+
+# Allow duplicate tag names to be extracted
+-duplicates
+
+# Extract values of unknown tags
+-unknown
+
+# And also extract unknown information from binary data blocks
+-unknown2
+
+# Show processed filenames
+-v0
+
+# Show progress on console and console title
+-progress:ExifTool %p%%
+-progress
+
+# Check if the JSON file corresponding to the media exists
+-if
+(-e "${Directory}/${FileName}".".json")
+
+# Handle only PNG/JPEG files
+-if
+($FileType eq "JPEG" or $FileType eq "PNG")
+
+# Attempt to modify media only if the info doesn't already exist
+-if
+($FileType eq "JPEG" and not $EXIF:DateTimeOriginal) or ($FileType eq "PNG" and not $PNG:CreationTime) or (not $EXIF:GPSLatitude or not $GPS:GPSLatitude)
+
+# Attempt to read tags from the JSON
+-tagsFromFile
+%d%F.json
+
+# Write out the tags. Use ConvertUnixTime to try and convert the UTC timestamp
+# to a reasonable local EXIF string.
+
+# General EXIF data
+-AllDates<${PhotoTakenTimeTimestamp;$_=ConvertUnixTime($_,1)}
+
+# PNG-specific
+-XMP-Exif:DateTimeOriginal<${PhotoTakenTimeTimestamp;$_=ConvertUnixTime($_,1)}
+-PNG:CreationTime<${PhotoTakenTimeTimestamp;$_=ConvertUnixTime($_,1)}
+
+# File attributes
+-FileCreateDate<${PhotoTakenTimeTimestamp;$_=ConvertUnixTime($_,0)}
+-FileModifyDate<${PhotoTakenTimeTimestamp;$_=ConvertUnixTime($_,0)}
+-FileAccessDate<${PhotoTakenTimeTimestamp;$_=ConvertUnixTime($_,0)}
+
+# GPS location
+-GPSAltitude<GeoDataAltitude
+-GPSLatitude<GeoDataLatitude
+-GPSLatitudeRef<GeoDataLatitude
+-GPSLongitude<GeoDataLongitude
+-GPSLongitudeRef<GeoDataLongitude 
+
+# Common attributes
+-Keywords<Tags 
+-Subject<Tags 
+-Caption-Abstract<Description 
+-ImageDescription<Description 
+
+# Overwrite original files. If this option is not specified, ExifTool
+# makes a copy of the original file with extension "_original" in the
+# source directory. If you wish to copy the files instead of overwriting
+# them, see example 5 at https://exiftool.org/filename.html about
+# using the '-o' option.
+-overwrite_original
+
+# Recurse all subdirs
+-r
+
+# Process everything except JSON files
+--ext
+json
