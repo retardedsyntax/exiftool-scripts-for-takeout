@@ -1,0 +1,59 @@
+# Move any files from Facebook (filename starts with 'FB_IMG') to
+# a subdirectory in the original directory
+#
+# Options overview:             https://exiftool.org/exiftool_pod.html#Option-Overview
+# Writing file/directory names: https://exiftool.org/filename.html
+
+# Always use UTF8 charset
+-charset
+UTF8
+
+# Process only JSON files
+-ext
+json
+
+# Skip minor errors and warnings
+-ignoreMinorErrors
+
+# Allow duplicate tag names to be extracted
+-duplicates
+
+# Extract values of unknown tags
+-unknown
+
+# And also extract unknown information from binary data blocks
+-unknown2
+
+# Show processed filenames
+-v0
+
+# Show progress on console and console title
+-progress:ExifTool %p%%
+-progress
+
+# Recursive
+#-r
+
+# Match all filenames where 'FB_IMG' occurs
+#
+# Perl regex references:
+# https://perldoc.perl.org/perlre
+# https://perldoc.perl.org/perlop#Regexp-Quote-Like-Operators
+#
+# Online testers:
+# https://ingram-braun.net/erga/online-regex-tester-perl-php-javascript/
+# https://regex101.com/
+-if
+($FileName=~/FB_IMG/)
+#($FileName=~/^.+FB_IMG.+$/)
+
+# Rename file
+#-FileName<${FileName;s/^([^.]+?)\.(\w+?)(\(\d+\)).json$/$1$3\.$2.json/}
+-TestName=%d/Facebook/%f.%e
+
+# Overwrite original files. If this option is not specified, ExifTool
+# makes a copy of the original file with extension "_original" in the
+# source directory. If you wish to copy the files instead of overwriting
+# them, see example 5 at https://exiftool.org/filename.html about
+# using the '-o' option.
+-overwrite_original
