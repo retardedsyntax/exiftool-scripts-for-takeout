@@ -1,0 +1,42 @@
+# Sort media files based on media dates.
+#
+# Options overview:             https://exiftool.org/exiftool_pod.html#Option-Overview
+# Writing file/directory names: https://exiftool.org/filename.html
+
+# Always use UTF8 charset
+-charset
+UTF8
+
+# Skip minor errors and warnings
+-ignoreMinorErrors
+
+# Allow duplicate tag names to be extracted
+-duplicates
+
+# Extract values of unknown tags
+-unknown
+
+# And also extract unknown information from binary data blocks
+-unknown2
+
+# Show processed filenames
+-v0
+
+# Show progress on console and console title
+-progress:ExifTool %p%%
+-progress
+
+# Ignore Facebook related media
+-if
+(not $FileName=~/FB_IMG/)
+
+-d
+%Y/Image_%Y%m%d-%H%M%S%%-c.%%e
+
+-FileName<DateTimeOriginal
+
+#-Directory=D:\GPhotos\Processed\
+#-TestName<CreateDate
+
+# Recurse all subdirs
+-r
