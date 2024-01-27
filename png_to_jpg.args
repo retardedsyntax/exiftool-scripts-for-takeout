@@ -1,10 +1,30 @@
 # Rename JPEGs that were incorrectly marked with the PNG extension
+#
+# Options overview:             https://exiftool.org/exiftool_pod.html#Option-Overview
+# Writing file/directory names: https://exiftool.org/filename.html
 
-# Recursive
--r
+# Always use UTF8 charset
+-charset
+UTF8
+
+# Skip minor errors and warnings
+-ignoreMinorErrors
+
+# Allow duplicate tag names to be extracted
+-duplicates
+
+# Extract values of unknown tags
+-unknown
+
+# And also extract unknown information from binary data blocks
+-unknown2
 
 # Show processed filenames
 -v0
+
+# Show progress on console and console title
+-progress:ExifTool %p%%
+-progress
 
 # Look for PNGs ...
 -ext
@@ -12,10 +32,17 @@ png
 
 # ... whose content is JPEG ...
 -if
-$Filetype eq "JPEG"
+($Filetype eq "JPEG")
 
-# ... and rename to jpg
--filename=%f.jpg
+# ... and rename to JPG
+-FileName=%f.jpg
 
-# Clobber everything
+# Overwrite original files. If this option is not specified, ExifTool
+# makes a copy of the original file with extension "_original" in the
+# source directory. If you wish to copy the files instead of overwriting
+# them, see example 5 at https://exiftool.org/filename.html about
+# using the '-o' option.
 -overwrite_original
+
+# Recurse all subdirs
+-r
