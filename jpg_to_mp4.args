@@ -34,7 +34,7 @@ jpg
 -if
 ($Filetype eq "MP4")
 
-# ... and rename to mp4
+# ... and rename to MP4
 -FileName=%f.mp4
 
 # Overwrite original files. If this option is not specified, ExifTool
