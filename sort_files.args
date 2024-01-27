@@ -30,6 +30,10 @@ UTF8
 -if
 (not $FileName=~/FB_IMG/)
 
+# Sort only image files
+-if
+($FileType eq "JPEG") or ($FileType eq "PNG")
+
 -d
 %Y/Image_%Y%m%d-%H%M%S%%-c.%%e
 
