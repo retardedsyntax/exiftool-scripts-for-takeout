@@ -43,7 +43,7 @@ UTF8
 -all:all
 
 -unsafe
-#-icc_profile
+-icc_profile
 
 # Overwrite original files. If this option is not specified, ExifTool
 # makes a copy of the original file with extension "_original" in the
