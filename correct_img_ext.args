@@ -30,6 +30,7 @@ UTF8
 -progress
 
 # ... whose content is not match extension
+-if
 (($Filetype eq "JPEG" and (uc $FileExtension ne "JPG" and uc $FileExtension ne "JPEG")) or ($Filetype eq "PNG" and (uc $FileExtension ne "PNG" )) or ($Filetype eq "DNG" and (uc $FileExtension ne "DNG" )) or ($Filetype eq "CR2" and (uc $FileExtension ne "CR2" )))
 
 # ... and rename to correct type

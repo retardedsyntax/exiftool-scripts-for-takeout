@@ -34,6 +34,7 @@ LargeFileSupport
 -progress
 
 # ... whose content is not match extension
+-if
 (($Filetype eq "MP4" and (uc $FileExtension ne "MP4")) or ($Filetype eq "MOV" and (uc $FileExtension ne "MOV" )) or ($Filetype eq "3GP" and (uc $FileExtension ne "3GP" )))
 
 # ... and rename to correct type
