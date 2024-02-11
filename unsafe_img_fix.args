@@ -39,9 +39,11 @@ UTF8
 -tagsfromfile
 %d%F
 
-# Write valid metadata back
+# Write valid metadata back using UTF-8
+-codedcharacterset=utf8
 -all:all
 
+# Keep 'unsafe' tags and ICC profiles
 -unsafe
 -icc_profile
 
@@ -51,6 +53,9 @@ UTF8
 # them, see example 5 at https://exiftool.org/filename.html about
 # using the '-o' option.
 -overwrite_original
+
+# Preserve file modify timestamps
+-preserve
 
 # Recurse all subdirs
 -r
