@@ -10,6 +10,10 @@
 -charset
 UTF8
 
+# Enable large file support for handling large videos
+-api
+LargeFileSupport
+
 # Skip minor errors and warnings
 -ignoreMinorErrors
 
