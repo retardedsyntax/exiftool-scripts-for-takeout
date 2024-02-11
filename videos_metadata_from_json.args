@@ -83,6 +83,9 @@ UTF8
 # using the '-o' option.
 -overwrite_original
 
+# Preserve file modify timestamps
+-preserve
+
 # Recurse all subdirs
 -r
 
