@@ -1,7 +1,10 @@
-# Rename PNGs that were incorrectly marked with the JPEG extension
+# Rename videos that were incorrectly marked with the extension
 #
 # Options overview:             https://exiftool.org/exiftool_pod.html#Option-Overview
 # Writing file/directory names: https://exiftool.org/filename.html
+#
+# References:
+# https://exiftool.org/forum/index.php?topic=12361.0
 
 # Always use UTF8 charset
 -charset
@@ -26,16 +29,11 @@ UTF8
 -progress:ExifTool %p%%
 -progress
 
-# Look for JPEGs ...
--ext
-jpg
+# ... whose content is not match extension
+(($Filetype eq "MP4" and (uc $FileExtension ne "MP4")) or ($Filetype eq "MOV" and (uc $FileExtension ne "MOV" )) or ($Filetype eq "3GP" and (uc $FileExtension ne "3GP" )))
 
-# ... whose content is PNG ...
--if
-($Filetype eq "PNG")
-
-# ... and rename to PNG
--FileName=%f.png
+# ... and rename to correct type
+-Filename<${BaseName}.${filetype;$_=lc}
 
 # Overwrite original files. If this option is not specified, ExifTool
 # makes a copy of the original file with extension "_original" in the
@@ -43,6 +41,9 @@ jpg
 # them, see example 5 at https://exiftool.org/filename.html about
 # using the '-o' option.
 -overwrite_original
+
+# Preserve file modify timestamps
+-preserve
 
 # Recurse all subdirs
 -r
